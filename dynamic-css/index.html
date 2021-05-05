@@ -10,14 +10,40 @@
     <div id="app">
         <h1>Dynamic CSS</h1>
         <h2>Example 1</h2>
-        <div :class={red: true, }></div>
+        <button @click="isClicked = !isClicked" :class="{isClicked}" >Change Color</button>
+        <h2>Example 2</h2>
+        <button @click="isClicked=!isClicked">Toggle Click</button>
+        <button @click="nearBy=!nearBy">Toggle NearBy</button>
+        <div :class="compClasses">Here<span></span></div>
     </div>
+    <style>
+        button {
+            background-color: blue;
+            color: white;
+        }
+        .isClicked {
+            background-color: red;
+        }
+        .nearBy span:after {
+            content: "nearBy";
+            margin-left: 10px;
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                
+                isClicked: false,
+                nearBy: false
+            },
+            computed: {
+                compClasses: function() {
+                    return {
+                        isClicked: this.isClicked,
+                        nearBy: this.nearBy
+                    }
+                }
             }
         });
     </script>
