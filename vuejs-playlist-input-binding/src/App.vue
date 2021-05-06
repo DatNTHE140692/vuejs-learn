@@ -12,10 +12,15 @@
         <input type="checkbox" v-model="blog.favorites" value="Cherry" /> Cherry
         <input type="checkbox" v-model="blog.favorites" value="Flower" /> Flower
       </div>
+      <label>Author:</label>
+      <select v-model="blog.author">
+        <option v-for="author in authors" :key="author">{{author}}</option>
+      </select>
     </form>
     <div id="preview">
       <p>Blog title: {{ blog.title }}</p>
       <p>Blog content: {{ blog.content }}</p>
+      <p>Author: {{blog.author}}</p>
       <p>Favorites</p>
       <ul>
         <li v-for="f in blog.favorites" :key="f">{{ f }}</li>
@@ -33,7 +38,9 @@ export default {
         title: "",
         content: "",
         favorites: [],
+        author: ''
       },
+      authors: ['DatNT', 'ThuongPT', 'TuND', 'ThuyDT']
     };
   },
 };
