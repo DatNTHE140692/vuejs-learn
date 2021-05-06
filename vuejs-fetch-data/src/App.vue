@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <single-post v-for="post in posts" :key="post.id" :post="post"></single-post>
+    <input type="search" placeholder="search" v-model="search" id="search-box"/>
+    <single-post v-for="post in filteredPosts" :key="post.id" :post="post"></single-post>
   </div>
 </template>
 
@@ -14,13 +15,21 @@ export default {
   data() {
     return {
       posts: [],
+      search: ''
     };
   },
   created() {
     fetch("https://jsonplaceholder.typicode.com/users/1/posts")
       .then((response) => response.json())
-      .then((posts) => this.posts = posts.slice(0, 5));
+      .then((posts) => this.posts = posts);
   },
+  computed: {
+    filteredPosts: function() {
+      return this.posts.filter(post => {
+        return post.title.match(this.search);
+      })
+    }
+  }
 };
 </script>
 
@@ -32,5 +41,9 @@ export default {
   color: #2c3e50;
   max-width: 600px;
   margin: 0 auto;
+}
+
+#search-box {
+  width: 100%;
 }
 </style>
