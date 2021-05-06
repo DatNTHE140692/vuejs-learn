@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Looping through lists</h1>
+        <h2>Characters</h2>
+        <ul>
+            <li v-for="c in characters">{{c}}</li>
+        </ul>
+        <h2>Greetings</h2>
+        <ol>
+            <li v-for="(g, index) of greetings" :key="g.id">{{index}} - {{g.name}}</li>
+        </ol>
+        <h2>Key & Value Loop</h2>
+        <ul v-for="g in greetings">
+            <li v-for="(key, val) in g">{{key}} - {{val}}</li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                characters: ['Mario', 'Luigi', 'Yoshi', 'Bowser'],
+                greetings: [
+                    {id: 1, name: 'Hello'},
+                    {id: 2, name: 'Hi'},
+                    {id: 3, name: 'howdy'}
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
