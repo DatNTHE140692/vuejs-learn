@@ -1,4 +1,4 @@
-# vuejs-playlist-input-binding
+# vuejs-playlist-checkbox-binding
 
 > A Vue.js project
 
