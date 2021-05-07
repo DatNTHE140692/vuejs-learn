@@ -1,47 +1,21 @@
 <template>
   <div id="app">
-    <input type="search" placeholder="search" v-model="search" id="search-box"/>
-    <single-post v-for="post in filteredPosts" :key="post.id" :post="post"></single-post>
+    <app-header></app-header>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import SinglePostVue from "./components/SinglePost.vue";
+import headerVue from './components/header.vue';
 export default {
   name: "app",
   components: {
-    "single-post": SinglePostVue,
+    'app-header': headerVue
   },
   data() {
     return {
-      posts: [],
-      search: ''
     };
   },
-  created() {
-    fetch("https://jsonplaceholder.typicode.com/users/1/posts")
-      .then((response) => response.json())
-      .then((posts) => this.posts = posts);
-  },
-  computed: {
-    filteredPosts: function() {
-      return this.posts.filter(post => {
-        return post.title.match(this.search);
-      })
-    }
-  },
-  filters: {
-    toUppercase: function(value) {
-      return value.toUpperCase();
-    }
-  },
-  directives: {
-    'rainbow': {
-      bind(el, binding, vnode) {
-        el.style.color= '#' + Math.random().toString(16).slice(2, 8);
-      }
-    }
-  }
 };
 </script>
 
